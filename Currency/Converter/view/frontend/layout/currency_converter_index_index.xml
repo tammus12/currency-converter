@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      layout="1column"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+
+    <head>
+        <title>Currency Exchange Converter</title>
+        <css src="Currency_Converter::css/converter.css"/>
+    </head>
+
+    <body>
+        <referenceContainer name="content">
+            <block class="Currency\Converter\Block\Converter"
+                   name="currency.converter"
+                   template="Currency_Converter::converter.phtml"/>
+        </referenceContainer>
+    </body>
+</page>

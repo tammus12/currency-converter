@@ -1,0 +1,117 @@
+<?php
+/** @var \Currency\Converter\Block\Converter $block */
+?>
+
+<div class="currency-converter"
+     id="currency-converter"
+     data-api-url="<?= $block->escapeUrl($block->getApiUrl()) ?>">
+
+    <div class="converter-header">
+        <h1><?= $block->escapeHtml(__('Currency Converter')) ?></h1>
+        <p>
+            <?= $block->escapeHtml(
+                __('Convert currencies and track exchange rate movements.')
+            ) ?>
+        </p>
+    </div>
+
+    <div class="converter-card">
+
+        <div class="converter-inputs">
+
+            <div class="currency-field">
+                <label for="from-currency">
+                    <?= $block->escapeHtml(__('From')) ?>
+                </label>
+
+                <select id="from-currency">
+                    <option value="USD">USD</option>
+                </select>
+
+                <input type="number"
+                       id="from-amount"
+                       value="1"
+                       min="0"
+                       step="any"
+                       placeholder="Enter amount"/>
+            </div>
+
+            <button type="button"
+                    id="swap-currencies"
+                    class="swap-button"
+                    title="<?= $block->escapeHtmlAttr(__('Swap currencies')) ?>"
+                    aria-label="<?= $block->escapeHtmlAttr(__('Swap currencies')) ?>">
+                ⇄
+            </button>
+
+            <div class="currency-field">
+                <label for="to-currency">
+                    <?= $block->escapeHtml(__('To')) ?>
+                </label>
+
+                <select id="to-currency">
+                    <option value="EUR">EUR</option>
+                </select>
+
+                <input type="text"
+                       id="to-amount"
+                       readonly
+                       placeholder="Converted amount"/>
+            </div>
+
+        </div>
+
+        <div class="exchange-rate-info">
+
+            <div id="exchange-rate">
+                <?= $block->escapeHtml(__('Loading exchange rate...')) ?>
+            </div>
+
+            <div id="rate-date"></div>
+
+            <div id="conversion-message" role="status"></div>
+
+        </div>
+
+    </div>
+
+    <div class="history-card">
+
+        <div class="history-header">
+            <h2>
+                <?= $block->escapeHtml(__('Exchange Rate History')) ?>
+            </h2>
+
+            <select id="history-period"
+                    aria-label="<?= $block->escapeHtmlAttr(__('Historical period')) ?>">
+                <option value="7">7 Days</option>
+                <option value="30">30 Days</option>
+                <option value="90" selected>90 Days</option>
+                <option value="180">6 Months</option>
+                <option value="365">1 Year</option>
+            </select>
+        </div>
+
+        <div id="history-loading">
+            <?= $block->escapeHtml(__('Loading historical rates...')) ?>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="exchange-chart"
+                    aria-label="<?= $block->escapeHtmlAttr(__('Historical exchange rate chart')) ?>">
+            </canvas>
+        </div>
+
+        <div id="history-summary"></div>
+
+    </div>
+
+</div>
+
+<script type="text/x-magento-init">
+{
+    "#currency-converter": {
+        "Currency_Converter/js/converter": {}
+    }
+}
+</script>
